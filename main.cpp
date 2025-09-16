@@ -5,14 +5,14 @@ using namespace std;
 const int ROW = 6;
 const int COLUMN = 5;
 
-void board(int row, int column, char answerOfPlayer[6][5] = {}) {
+void board(int row, int column, char answerOfPlayer[ROW][COLUMN], string result[ROW]) {
     int width_of_one_column = 5;
-    int width_of_row = row*width_of_one_column + row + 1;
+    int width_of_row = column*width_of_one_column + column + 1;
     // cout << '+' << setfill('-') << setw(width_of_row - 1) << '+' << endl;
 
-    for(int i = 0; i < 2*column + 1; i++) {
+    for(int i = 0; i < 2*row + 1; i++) {
         if(i % 2 == 0) {
-            cout << '+' << setfill('-') << setw(width_of_row - 1) << '+';
+            cout << '+' << setfill('-') << setw(width_of_row-1) << '+';
         } else {
             int row_index = (i+1)/2 - 1;
             if(i == 2*column) {
@@ -41,14 +41,18 @@ void board(int row, int column, char answerOfPlayer[6][5] = {}) {
 int main()
 {  
 
-    char answer[6][5] = {
-        {'5', ' ', '3', '5', ' '},
-        {' ', ' ', ' ', ' ', ' '},
-        {' ', ' ', ' ', ' ', ' '},
-        {' ', ' ', ' ', ' ', ' '},
-        {' ', '7', ' ', ' ', ' '},
-        {' ', ' ', ' ', ' ', ' '}
-    };
-    board(5, 6, answer);
+    char answer[ROW][COLUMN];
+    string result[ROW];
+
+    for(int i = 0; i < ROW; i++) {
+        for(int j = 0; j < COLUMN; j++) {
+            answer[i][j] = ' ';
+        }
+        result[i] = "";
+    }
+
+
+    board(ROW, COLUMN, answer, result);
+    cin.get();
     return 0;
 }
